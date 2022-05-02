@@ -39,11 +39,11 @@ require('packer').startup(function(use)
 	-- Better clipboard support
 	use 'christoomey/vim-system-copy'
 
+	-- File explorer
 	use 'tamago324/lir.nvim'
 
-	use {
-		'goolord/alpha-nvim',
-	}
+	-- Startup UI
+	use 'goolord/alpha-nvim'
 end)
 
 --Set highlight on search
