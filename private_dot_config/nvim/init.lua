@@ -42,7 +42,7 @@ require('packer').startup(function(use)
 	-- File explorer
 	use 'tamago324/lir.nvim'
 
-	-- Startup UI
+	-- Alpha Startup UI
 	use 'goolord/alpha-nvim'
 end)
 
