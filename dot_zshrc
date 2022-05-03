@@ -129,6 +129,19 @@ dc_build() {
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+dockerBuildPlatform() {
+        export PRIVATE_REPO_TOKEN="$(
+        aws codeartifact get-authorization-token \
+                --profile registries-read \
+                --domain sure \
+                --query authorizationToken \
+                --duration-seconds 1200 \
+                --output text
+        )";
+        export DOCKER_BUILDKIT=1;
+        docker build --tag platform-core:latest --secret id=PRIVATE_REPO_TOKEN .;
+}
+
 get_codeartifact_token() {
   aws --profile $1 sso login
   poetry config http-basic.codeartifact aws $(aws codeartifact get-authorization-token --domain sure --query authorizationToken --output text --profile $1)
