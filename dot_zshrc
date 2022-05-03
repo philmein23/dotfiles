@@ -105,6 +105,9 @@ source $ZSH/oh-my-zsh.sh
 alias k="kubectl"
 alias nv="nvim"
 alias mux="tmuxinator"
+alias che="chezmoi edit"
+alias chd="chezmoi diff"
+alias cha="chezmoi apply"
 
 export EDITOR="nvim"
 
