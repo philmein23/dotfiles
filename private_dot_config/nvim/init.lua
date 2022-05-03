@@ -97,6 +97,12 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Go to first character in line
+vim.keymap.set('', '<Leader>h', '^')
+
+-- Go to last character in line
+vim.keymap.set('', '<Leader>l', 'g_')
+
 -- Save
 vim.keymap.set('n', '<leader>w', ':wa <CR>')
 
