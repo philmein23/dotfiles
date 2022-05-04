@@ -114,6 +114,8 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('v', '<C-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-k>', ":move '<-2<CR>gv=gv")
 
+vim.keymap.set({'n', 'x'}, '<leader>m', '%', { remap=true })
+
 -- Sync up plugins using Packer
 vim.keymap.set('n', '<leader>u', ':PackerSync<CR>')
 
