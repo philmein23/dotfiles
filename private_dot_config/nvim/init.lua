@@ -44,6 +44,13 @@ require('packer').startup(function(use)
 
 	-- Alpha Startup UI
 	use 'goolord/alpha-nvim'
+
+	use {
+		'VonHeikemen/searchbox.nvim',
+		requires = {
+			{ 'MunifTanjim/nui.nvim' }
+		}
+	}
 end)
 
 --Set highlight on search
@@ -114,7 +121,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('v', '<C-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-k>', ":move '<-2<CR>gv=gv")
 
-vim.keymap.set({'n', 'x'}, '<leader>m', '%', { remap=true })
+vim.keymap.set({ 'n', 'x' }, '<leader>m', '%', { remap = true })
 
 -- Sync up plugins using Packer
 vim.keymap.set('n', '<leader>u', ':PackerSync<CR>')
@@ -402,14 +409,12 @@ vim.keymap.set('n', '<leader>ff', function()
 	require('telescope.builtin').find_files { previewer = false }
 end)
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find)
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags)
-vim.keymap.set('n', '<leader>ft', require('telescope.builtin').tags)
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string)
-vim.keymap.set('n', '<leader>fp', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>fo', function()
 	require('telescope.builtin').tags { only_current_buffer = true }
 end)
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').oldfiles)
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
@@ -653,3 +658,27 @@ end
 
 vim.keymap.set('n', '<leader>dd', file_explorer)
 vim.keymap.set('n', '<leader>da', function() file_explorer(vim.fn.getcwd()) end)
+
+-- Searchbox
+local searchbox = require('searchbox')
+searchbox.setup({
+    hooks = {
+      on_done = function(value)
+        if value == nil then return end
+        vim.fn.setreg('s', value)
+      end
+    }
+  })
+
+-- Nice buffer local search
+vim.keymap.set('n', '<leader>s', ':SearchBoxIncSearch<CR>')
+vim.keymap.set('x', '<leader>s', ':SearchBoxIncSearch visual_mode=true<CR>')
+vim.keymap.set('n', '<leader>S', ":SearchBoxMatchAll title=' Match '<CR>")
+vim.keymap.set('x', '<leader>S', ":SearchBoxMatchAll title=' Match ' visual_mode=true<CR>")
+vim.keymap.set('n', '<leader>;', '<cmd>SearchBoxClear<CR>')
+
+-- Begin search & replace
+vim.keymap.set('n', '<leader>r', ":SearchBoxReplace confirm=menu<CR>")
+vim.keymap.set('x', '<leader>r', ":SearchBoxReplace confirm=menu visual_mode=true<CR>")
+vim.keymap.set('n', '<leader>R', ":SearchBoxReplace confirm=menu -- <C-r>=expand('<cword>')<CR><CR>")
+vim.keymap.set('x', '<leader>R', ":<C-u>GetSelection<CR>:SearchBoxReplace confirm=menu<CR><C-r>/")
