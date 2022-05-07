@@ -126,6 +126,9 @@ vim.keymap.set({ 'n', 'x' }, '<leader>m', '%', { remap = true })
 -- Sync up plugins using Packer
 vim.keymap.set('n', '<leader>u', ':PackerSync<CR>')
 
+-- Close buffer while preserving layout
+vim.keymap.set('n', '<leader>bc', ':bd<CR>')
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -402,6 +405,9 @@ require('telescope').setup {
 -- Enable telescope fzf native
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('live_grep_raw')
+
+-- Show keymaps
+vim.keymap.set('n', '<leader>?', ':Telescope keymaps<CR>')
 
 --Add leader shortcuts
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
