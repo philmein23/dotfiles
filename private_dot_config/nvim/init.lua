@@ -21,6 +21,7 @@ require('packer').startup(function(use)
 	use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 	use 'Julpikar/night-owl.nvim'
+	use "EdenEast/nightfox.nvim" -- Packer
 	-- Add indentation guides even on blank lines
 	use 'lukas-reineke/indent-blankline.nvim'
 	-- Add git related info in the signs columns and popups
@@ -79,12 +80,31 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
---Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme night-owl]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+-- code indention
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
+-- Theme setup
+local nightfox = require('nightfox')
+nightfox.setup {
+	options = {
+		styles = {
+			comments = "italic",
+			keywords = "bold",
+			types = "italic,bold",
+		}
+	}
+}
+
+--Set colorscheme
+vim.o.termguicolors = true
+vim.cmd [[colorscheme nightfox]]
 
 --Set statusbar
 require('lualine').setup {
@@ -668,13 +688,13 @@ vim.keymap.set('n', '<leader>da', function() file_explorer(vim.fn.getcwd()) end)
 -- Searchbox
 local searchbox = require('searchbox')
 searchbox.setup({
-    hooks = {
-      on_done = function(value)
-        if value == nil then return end
-        vim.fn.setreg('s', value)
-      end
-    }
-  })
+	hooks = {
+		on_done = function(value)
+			if value == nil then return end
+			vim.fn.setreg('s', value)
+		end
+	}
+})
 
 -- Nice buffer local search
 vim.keymap.set('n', '<leader>s', ':SearchBoxIncSearch<CR>')

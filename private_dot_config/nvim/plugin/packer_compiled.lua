@@ -119,6 +119,16 @@ _G.packer_plugins = {
     path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/night-owl.nvim",
     url = "https://github.com/Julpikar/night-owl.nvim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -158,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["searchbox.nvim"] = {
+    loaded = true,
+    path = "/Users/philmein23/.local/share/nvim/site/pack/packer/start/searchbox.nvim",
+    url = "https://github.com/VonHeikemen/searchbox.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
