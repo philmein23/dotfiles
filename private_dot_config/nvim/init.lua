@@ -31,6 +31,7 @@ require('packer').startup(function(use)
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'simrat39/rust-tools.nvim' -- rust-tools for rust rust_analyzer
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
@@ -512,6 +513,7 @@ require("nvim-lsp-installer").setup {
 
 local lspconfig = require 'lspconfig'
 local on_attach = function(_, bufnr)
+
   local opts = { buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -543,6 +545,9 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require('rust-tools').setup({
+  server = { on_attach = on_attach } })
 
 -- Example custom server
 -- Make runtime files discoverable to the server
