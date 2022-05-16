@@ -70,6 +70,9 @@ vim.o.mouse = 'a'
 --Enable break indent
 vim.o.breakindent = true
 
+-- Enable cursor line
+vim.o.cursorline = true
+
 --Save undo history
 vim.opt.undofile = true
 
@@ -153,6 +156,12 @@ vim.keymap.set('n', '<leader>u', ':PackerSync<CR>')
 
 -- Close buffer while preserving layout
 vim.keymap.set('n', '<leader>bc', ':bd<CR>')
+
+-- Copy relative/absolute paths
+vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%") <CR>')
+vim.keymap.set('n', '<leader>cF', ':let @+ = expand("%:p") <CR>')
+vim.keymap.set('n', '<leader>cn', ':let @+ = expand("%:t") <CR>')
+vim.keymap.set('n', '<leader>cd', ':let @+ = expand("%:p:h") <CR>')
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
