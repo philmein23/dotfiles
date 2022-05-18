@@ -37,6 +37,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'williamboman/nvim-lsp-installer'
+  use 'windwp/nvim-autopairs' -- autopairs
 
   -- Better clipboard support
   use 'christoomey/vim-system-copy'
@@ -726,3 +727,8 @@ vim.keymap.set('n', '<leader>r', ":SearchBoxReplace confirm=menu<CR>")
 vim.keymap.set('x', '<leader>r', ":SearchBoxReplace confirm=menu visual_mode=true<CR>")
 vim.keymap.set('n', '<leader>R', ":SearchBoxReplace confirm=menu -- <C-r>=expand('<cword>')<CR><CR>")
 vim.keymap.set('x', '<leader>R', ":<C-u>GetSelection<CR>:SearchBoxReplace confirm=menu<CR><C-r>/")
+
+
+-- Autopairs
+local npairs = require('nvim-autopairs')
+npairs.setup({fast_wrap = {}})
