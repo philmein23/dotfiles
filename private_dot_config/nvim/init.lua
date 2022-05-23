@@ -99,6 +99,11 @@ vim.opt.smartindent = true
 vim.o.grepprg = [[rg --no-heading --smart-case --vimgrep ]]
 vim.o.grepformat = "%f:%l:%c:%m"
 
+
+-- statusline
+vim.o.statusline = 3
+vim.o.winbar = "%f"
+
 -- Theme setup
 local nightfox = require('nightfox')
 nightfox.setup {
