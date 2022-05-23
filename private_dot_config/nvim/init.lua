@@ -19,7 +19,7 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-raw.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}-- Fancier statusline
   use 'Julpikar/night-owl.nvim'
   use "EdenEast/nightfox.nvim" -- Packer
   -- Add indentation guides even on blank lines
@@ -122,10 +122,11 @@ vim.cmd [[colorscheme nightfox]]
 --Set statusbar
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'palenight',
     component_separators = '|',
     section_separators = '',
+    globalstatus = true
   },
 }
 
