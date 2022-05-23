@@ -665,6 +665,8 @@ end
 
 local lir = require('lir')
 lir.setup({
+  show_hidden_files = true,
+  devicons_enable = true,
   on_init = on_init,
   mappings = {
     ['l']  = actions.edit,
