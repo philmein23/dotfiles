@@ -101,7 +101,7 @@ vim.o.grepformat = "%f:%l:%c:%m"
 
 
 -- statusline
-vim.o.winbar = "%f"
+vim.o.winbar = "%=%m %f"
 
 -- Theme setup
 local nightfox = require('nightfox')
