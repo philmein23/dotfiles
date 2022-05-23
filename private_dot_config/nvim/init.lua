@@ -101,7 +101,6 @@ vim.o.grepformat = "%f:%l:%c:%m"
 
 
 -- statusline
-vim.o.statusline = 3
 vim.o.winbar = "%f"
 
 -- Theme setup
