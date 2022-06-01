@@ -163,6 +163,9 @@ vim.keymap.set('n', '<leader>u', ':PackerSync<CR>')
 -- Close buffer while preserving layout
 vim.keymap.set('n', '<leader>bc', ':bd<CR>')
 
+-- Move to last active buffer
+vim.keymap.set('n', '<Leader>bl', ':buffer #<CR>')
+
 -- Copy relative/absolute paths
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%") <CR>')
 vim.keymap.set('n', '<leader>cF', ':let @+ = expand("%:p") <CR>')
