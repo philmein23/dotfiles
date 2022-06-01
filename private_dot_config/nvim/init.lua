@@ -400,7 +400,9 @@ local dropdown = function(title, previewer)
   return {
     prompt_title = title,
     previewer = previewer or false,
-    theme = 'dropdown'
+    theme = 'dropdown',
+    sort_lastused = true,
+    ignore_current_buffer = true
   }
 end
 
