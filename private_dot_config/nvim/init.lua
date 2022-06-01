@@ -426,6 +426,17 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+
+    -- Default layout options
+    prompt_prefix = ' ',
+    selection_caret = '❯ ',
+    layout_strategy = 'vertical',
+    sorting_strategy = 'ascending',
+    layout_config = {
+      preview_cutoff = 25,
+      mirror = true,
+      prompt_position = 'top'
+    },
   },
   pickers = {
     buffers = dropdown(),
