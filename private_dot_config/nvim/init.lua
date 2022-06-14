@@ -16,7 +16,7 @@ require('packer').startup(function(use)
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'christoomey/vim-tmux-navigator'
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-raw.nvim' } }
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}-- Fancier statusline
@@ -38,6 +38,9 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'williamboman/nvim-lsp-installer'
   use 'windwp/nvim-autopairs' -- autopairs
+  use {
+      'stevearc/aerial.nvim',
+    }
 
   -- Better clipboard support
   use 'christoomey/vim-system-copy'
@@ -460,7 +463,7 @@ require('telescope').setup {
 
 -- Enable telescope fzf native
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('live_grep_raw')
+require('telescope').load_extension('live_grep_args')
 
 -- Show keymaps
 vim.keymap.set('n', '<leader>?', ':Telescope keymaps<CR>')
@@ -755,3 +758,18 @@ vim.keymap.set('x', '<leader>R', ":<C-u>GetSelection<CR>:SearchBoxReplace confir
 -- Autopairs
 local npairs = require('nvim-autopairs')
 npairs.setup({fast_wrap = {}})
+
+-- Aerial
+local aerial = require("aerial")
+aerial.setup({
+  on_attach = function(bufnr)
+    -- Toggle the aerial window with <leader>a
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
+    -- Jump forwards/backwards with '{' and '}'
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
+    -- Jump up the tree with '[[' or ']]'
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+  end
+})
