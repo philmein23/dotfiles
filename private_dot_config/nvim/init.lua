@@ -126,6 +126,7 @@ vim.o.termguicolors = true
 vim.cmd [[colorscheme nightfox]]
 
 --Set statusbar
+local navic = require("nvim-navic")
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -134,6 +135,11 @@ require('lualine').setup {
     section_separators = '',
     globalstatus = true
   },
+  sections = {
+    lualine_c = {
+        { navic.get_location, cond = navic.is_available }
+    }
+  }
 }
 
 --Enable Comment.nvim
