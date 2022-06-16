@@ -41,6 +41,9 @@ require('packer').startup(function(use)
   use {
       'stevearc/aerial.nvim',
     }
+  use {
+    "SmiteshP/nvim-navic",
+  }
 
   -- Better clipboard support
   use 'christoomey/vim-system-copy'
@@ -545,8 +548,9 @@ require("nvim-lsp-installer").setup {
   automatic_installation = true
 }
 
+local navic = require("nvim-navic")
 local lspconfig = require 'lspconfig'
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 
   local opts = { buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -565,6 +569,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+  navic.attach(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -773,3 +778,4 @@ aerial.setup({
     vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
   end
 })
+
