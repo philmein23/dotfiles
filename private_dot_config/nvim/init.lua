@@ -60,6 +60,10 @@ require('packer').startup(function(use)
       { 'MunifTanjim/nui.nvim' }
     }
   }
+
+use {
+    "nvim-neorg/neorg",
+}
 end)
 
 --Set highlight on search
@@ -785,3 +789,10 @@ aerial.setup({
   end
 })
 
+-- NeOrg
+local neorg = require("neorg")
+neorg.setup({
+  load = {
+    ["core.defaults"] = {}
+  }
+})
