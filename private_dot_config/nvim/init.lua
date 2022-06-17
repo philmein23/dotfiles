@@ -794,6 +794,7 @@ local neorg = require("neorg")
 neorg.setup({
   load = {
     ["core.defaults"] = {},
+    ["core.integrations.treesitter"] = {},
     ["core.nrg.completion"] = {},
   }
 })
