@@ -795,6 +795,5 @@ neorg.setup({
   load = {
     ["core.defaults"] = {},
     ["core.integrations.treesitter"] = {},
-    ["core.norg.completion"] = {},
   }
 })
