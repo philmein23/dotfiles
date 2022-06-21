@@ -127,7 +127,7 @@ nightfox.setup {
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme nightfox]]
+vim.cmd [[colorscheme nordfox]]
 
 --Set statusbar
 local navic = require("nvim-navic")
