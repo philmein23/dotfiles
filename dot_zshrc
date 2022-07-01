@@ -110,6 +110,7 @@ alias chd="chezmoi diff"
 alias cha="chezmoi apply"
 
 export EDITOR="nvim"
+export PYTHONBREAKPOINT=ipdb.set_trace
 
 dc_build() {
   docker compose build --build-arg PRIVATE_REPO_TOKEN="$(aws --profile registries-read codeartifact get-authorization-token  --domain sure --query authorizationToken --duration-seconds 1200 --output text)"
