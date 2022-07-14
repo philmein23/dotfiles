@@ -61,6 +61,8 @@ require('packer').startup(function(use)
     }
   }
 
+use "kylechui/nvim-surround"
+
 use {
     "nvim-neorg/neorg",
 }
@@ -796,4 +798,10 @@ neorg.setup({
     ["core.defaults"] = {},
     ["core.integrations.treesitter"] = {},
   }
+})
+
+-- Nvim Surround
+local nvim_surround = require("nvim-surround")
+nvim_surround.setup({
+    -- Configuration here, or leave empty to use defaults
 })
