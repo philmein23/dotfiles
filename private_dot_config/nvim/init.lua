@@ -74,6 +74,8 @@ use {
         'sindrets/diffview.nvim'
       }
   }
+
+use 'folke/tokyonight.nvim'
 end)
 
 --Set highlight on search
@@ -137,14 +139,14 @@ nightfox.setup {
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme nordfox]]
+vim.cmd [[colorscheme tokyonight]]
 
 --Set statusbar
 local navic = require("nvim-navic")
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'palenight',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
     globalstatus = true
