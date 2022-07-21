@@ -66,6 +66,14 @@ use "kylechui/nvim-surround"
 use {
     "nvim-neorg/neorg",
 }
+
+  -- Neogit
+use {
+     'TimUntersberger/neogit',
+      requires = {
+        'sindrets/diffview.nvim'
+      }
+  }
 end)
 
 --Set highlight on search
@@ -805,3 +813,28 @@ local nvim_surround = require("nvim-surround")
 nvim_surround.setup({
     -- Configuration here, or leave empty to use defaults
 })
+
+
+-- diffview
+local diffview = require("diffview")
+diffview.setup({ })
+
+-- Neogit
+local neogit = require("neogit")
+
+neogit.setup({
+  disable_hint = true,
+  auto_refresh = false,
+  integrations = {diffview = true},
+  signs = {
+    section = {'»', '-'},
+    item = {'+', '*'}
+  },
+  mappings = {
+    status = {
+      [';'] = 'RefreshBuffer'
+    }
+  }
+})
+vim.keymap.set('n', '<leader>g', '<cmd>Neogit<cr>')
+
