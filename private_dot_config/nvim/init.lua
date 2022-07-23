@@ -123,7 +123,7 @@ vim.o.grepformat = "%f:%l:%c:%m"
 
 
 -- statusline
-vim.o.winbar = "%=%m %f"
+-- vim.o.winbar = "%=%m %f"
 
 -- Theme setup
 -- local nightfox = require('nightfox')
@@ -138,15 +138,16 @@ vim.o.winbar = "%=%m %f"
 -- }
 --
 
+vim.cmd [[colorscheme tokyonight]]
 -- Tokyo night theme configration
-vim.g.tokyonight_style = "dark"
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_lualine_bold = true
 vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight]]
 
 
 --Set statusbar
@@ -163,6 +164,9 @@ require('lualine').setup {
     lualine_c = {
         { navic.get_location, cond = navic.is_available }
     }
+  },
+  winbar = {
+    lualine_c = {"%=%m %f"}
   }
 }
 
