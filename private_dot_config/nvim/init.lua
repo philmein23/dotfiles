@@ -138,8 +138,6 @@ vim.o.grepformat = "%f:%l:%c:%m"
 -- }
 --
 
-vim.cmd [[colorscheme tokyonight]]
--- Tokyo night theme configration
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_lualine_bold = true
 vim.g.tokyonight_italic_functions = true
@@ -148,6 +146,8 @@ vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 --Set colorscheme
 vim.o.termguicolors = true
+vim.cmd [[colorscheme tokyonight]]
+-- Tokyo night theme configration
 
 
 --Set statusbar
