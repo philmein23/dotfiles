@@ -225,6 +225,11 @@ vim.keymap.set('n', '<leader>2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>
 vim.keymap.set('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
 vim.keymap.set('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
 
+-- Diffview
+vim.keymap.set('n', '<leader>dvo', ':DiffviewOpen <CR>')
+vim.keymap.set('n', '<leader>dvc', ':DiffviewClose <CR>')
+vim.keymap.set('n', '<leader>dfh', ':DiffviewFileHistory <CR>')
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
