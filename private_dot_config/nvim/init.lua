@@ -76,6 +76,7 @@ use {
   }
 
 use 'folke/tokyonight.nvim'
+use {'ThePrimeagen/harpoon'}
 end)
 
 --Set highlight on search
@@ -211,6 +212,18 @@ vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%") <CR>')
 vim.keymap.set('n', '<leader>cF', ':let @+ = expand("%:p") <CR>')
 vim.keymap.set('n', '<leader>cn', ':let @+ = expand("%:t") <CR>')
 vim.keymap.set('n', '<leader>cd', ':let @+ = expand("%:p:h") <CR>')
+
+-- Toggle harpoon mark
+vim.keymap.set('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+
+-- Search marks
+vim.keymap.set('n', '<F3>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
+
+-- Navigate marks
+vim.keymap.set('n', '<leader>1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
+vim.keymap.set('n', '<leader>2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
+vim.keymap.set('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
+vim.keymap.set('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
