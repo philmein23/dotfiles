@@ -525,6 +525,7 @@ vim.keymap.set('n', '<leader>ff', function()
 end)
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find)
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string)
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').treesitter)
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>fo', function()
   require('telescope.builtin').tags { only_current_buffer = true }
