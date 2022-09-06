@@ -19,10 +19,10 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
+  use { 'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}-- Fancier statusline
   use 'Julpikar/night-owl.nvim'
   use "EdenEast/nightfox.nvim" -- Packer
-  -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
@@ -139,16 +139,14 @@ vim.o.grepformat = "%f:%l:%c:%m"
 -- }
 --
 
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_lualine_bold = true
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
---Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight]]
 -- Tokyo night theme configration
+require('tokyonight').setup({
+  style = "night",
+  styles = {
+    functions = "italic"
+  },
+  sidebars = { "qf", "vista_kind", "terminal", "packer" },
+})
 
 
 --Set statusbar
@@ -156,7 +154,7 @@ local navic = require("nvim-navic")
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'tokyonight',
+    theme = 'everblush',
     component_separators = '|',
     section_separators = '',
     globalstatus = true
