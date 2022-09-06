@@ -148,13 +148,15 @@ require('tokyonight').setup({
   sidebars = { "qf", "vista_kind", "terminal", "packer" },
 })
 
+vim.cmd[[colorscheme tokyonight]]
+
 
 --Set statusbar
 local navic = require("nvim-navic")
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'everblush',
+    theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
     globalstatus = true
