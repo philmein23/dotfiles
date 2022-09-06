@@ -143,7 +143,8 @@ vim.o.grepformat = "%f:%l:%c:%m"
 require('tokyonight').setup({
   style = "night",
   styles = {
-    functions = "italic"
+    functions = "bold",
+    keywords = "bold"
   },
   sidebars = { "qf", "vista_kind", "terminal", "packer" },
 })
