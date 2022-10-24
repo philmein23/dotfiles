@@ -61,14 +61,14 @@ require('packer').startup(function(use)
     }
   }
 
-use({
-  "folke/noice.nvim",
-  requires = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "rcarriga/nvim-notify",
-    }
-})
-
+-- use({
+--   "folke/noice.nvim",
+--   requires = {
+--     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+--     "rcarriga/nvim-notify",
+--     }
+-- })
+--
 use "kylechui/nvim-surround"
 
 use {
@@ -895,6 +895,6 @@ vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction =
 vim.keymap.set('n', '<leader>hw', ':HopWord <cr>')
 
 
-local noice = require('noice')
-noice.setup({})
+-- local noice = require('noice')
+-- noice.setup({})
 
