@@ -90,9 +90,9 @@ use {
   branch = 'v2.0', -- optional but strongly recommended
 }
 
-use {
-    "cbochs/portal.nvim",
-}
+-- use {
+--     "cbochs/portal.nvim",
+-- }
 end)
 
 --Set highlight on search
@@ -231,7 +231,7 @@ vim.keymap.set('n', '<leader>cn', ':let @+ = expand("%:t") <CR>')
 vim.keymap.set('n', '<leader>cd', ':let @+ = expand("%:p:h") <CR>')
 
 -- Toggle harpoon mark
--- vim.keymap.set('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+vim.keymap.set('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<cr>')
 
 -- Search marks
 vim.keymap.set('n', '<F3>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
@@ -249,9 +249,9 @@ vim.keymap.set('n', '<leader>dvc', ':DiffviewClose <CR>')
 vim.keymap.set('n', '<leader>dfh', ':DiffviewFileHistory <CR>')
 
 -- Portal
-vim.keymap.set("n", "<leader>o", require("portal").jump_backward, {})
-vim.keymap.set("n", "<leader>i", require("portal").jump_forward, {})
-vim.keymap.set("n", "<leader>m", require("portal.tag").toggle, {})
+-- vim.keymap.set("n", "<leader>o", require("portal").jump_backward, {})
+-- vim.keymap.set("n", "<leader>i", require("portal").jump_forward, {})
+-- vim.keymap.set("n", "<leader>m", require("portal.tag").toggle, {})
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
