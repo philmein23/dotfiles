@@ -9,6 +9,7 @@ local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
 require('packer').startup(function(use)
+  use 'fedepujol/move.nvim'
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
@@ -208,10 +209,6 @@ vim.keymap.set('n', '<leader>w', ':wa <CR>')
 --Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Moving lines and preserving indentation
-vim.keymap.set('v', '<C-j>', ":move '>+1<CR>gv=gv")
-vim.keymap.set('v', '<C-k>', ":move '<-2<CR>gv=gv")
 
 vim.keymap.set({ 'n', 'x' }, '<leader>m', '%', { remap = true })
 
@@ -907,3 +904,18 @@ vim.keymap.set('n', '<leader>hw', ':HopWord <cr>')
 local noice = require('noice')
 noice.setup({})
 
+
+local opts = { noremap = true, silent = true }
+-- Normal-mode commands
+vim.keymap.set('n', '<S-j>', ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', '<S-k>', ':MoveLine(-1)<CR>', opts)
+vim.keymap.set('n', '<S-h>', ':MoveHChar(-1)<CR>', opts)
+vim.keymap.set('n', '<S-l>', ':MoveHChar(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+
+-- Visual-mode commands
+vim.keymap.set('v', '<S-j>', ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', '<S-k>', ':MoveBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<S-h>', ':MoveHBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<S-l>', ':MoveHBlock(1)<CR>', opts)
