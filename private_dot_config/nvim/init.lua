@@ -9,6 +9,16 @@ local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
 require('packer').startup(function(use)
+  use({
+      "kdheepak/lazygit.nvim",
+      requires = {
+          "nvim-telescope/telescope.nvim",
+          "nvim-lua/plenary.nvim",
+      },
+      config = function()
+          require("telescope").load_extension("lazygit")
+      end,
+  })
   use 'fedepujol/move.nvim'
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
@@ -77,13 +87,14 @@ use {
 }
 
   -- Neogit
-use {
-     'TimUntersberger/neogit',
-      requires = {
-        'sindrets/diffview.nvim'
-      }
-  }
+-- use {
+--      'TimUntersberger/neogit',
+--       requires = {
+--         'sindrets/diffview.nvim'
+--       }
+--   }
 
+use {"sindrets/diffview.nvim"}
 use 'folke/tokyonight.nvim'
 use {'ThePrimeagen/harpoon'}
 use {
@@ -872,23 +883,25 @@ local diffview = require("diffview")
 diffview.setup({ })
 
 -- Neogit
-local neogit = require("neogit")
-
-neogit.setup({
-  disable_hint = true,
-  auto_refresh = false,
-  integrations = {diffview = true},
-  signs = {
-    section = {'»', '-'},
-    item = {'+', '*'}
-  },
-  mappings = {
-    status = {
-      [';'] = 'RefreshBuffer'
-    }
-  }
-})
-vim.keymap.set('n', '<leader>g', '<cmd>Neogit<cr>')
+-- local neogit = require("neogit")
+--
+-- neogit.setup({
+--   disable_hint = true,
+--   auto_refresh = false,
+--   integrations = {diffview = true},
+--   signs = {
+--     section = {'»', '-'},
+--     item = {'+', '*'}
+--   },
+--   mappings = {
+--     status = {
+--       [';'] = 'RefreshBuffer'
+--     }
+--   }
+-- })
+local keymap_opts = { noremap = true, silent = true }
+-- vim.keymap.set('n', '<leader>g', '<cmd>Neogit<cr>')
+vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', keymap_opts)
 
 
 -- hop
