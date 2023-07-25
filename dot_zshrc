@@ -166,3 +166,6 @@ eval "$(direnv hook zsh)"
 
 #if you want to set up an alias
 alias poetry-clean='rm -rf $(poetry env list --full-path | awk "{print $1}") && yes yes | poetry cache clear --all pypi && poetry cache clear --all private'
+
+alias dcr="docker compose run"
+alias lg="lazygit"
