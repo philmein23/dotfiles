@@ -72,13 +72,13 @@ require('packer').startup(function(use)
     }
   }
 
-use({
-  "folke/noice.nvim",
-  requires = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "rcarriga/nvim-notify",
-    }
-})
+-- use({
+--   "folke/noice.nvim",
+--   requires = {
+--     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+--     "rcarriga/nvim-notify",
+--     }
+-- })
 --
 use "kylechui/nvim-surround"
 
