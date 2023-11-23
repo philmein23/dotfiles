@@ -27,7 +27,8 @@ require('packer').startup(function(use)
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   use 'christoomey/vim-tmux-navigator'
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' } }
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim', 'nvim-telescope/telescope-fzy-native.nvim',
+ } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use { 'kyazdani42/nvim-web-devicons' }
@@ -72,27 +73,8 @@ require('packer').startup(function(use)
     }
   }
 
-  use {
-    'nvim-telescope/telescope-fzy-native.nvim',
-  }
-
--- use({
---   "folke/noice.nvim",
---   requires = {
---     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
---     "rcarriga/nvim-notify",
---     }
--- })
---
 use "kylechui/nvim-surround"
 
-  -- Neogit
--- use {
---      'TimUntersberger/neogit',
---       requires = {
---         'sindrets/diffview.nvim'
---       }
---   }
 
 use {"sindrets/diffview.nvim"}
 use 'folke/tokyonight.nvim'
@@ -880,23 +862,6 @@ nvim_surround.setup({
 local diffview = require("diffview")
 diffview.setup({ })
 
--- Neogit
--- local neogit = require("neogit")
---
--- neogit.setup({
---   disable_hint = true,
---   auto_refresh = false,
---   integrations = {diffview = true},
---   signs = {
---     section = {'»', '-'},
---     item = {'+', '*'}
---   },
---   mappings = {
---     status = {
---       [';'] = 'RefreshBuffer'
---     }
---   }
--- })
 local keymap_opts = { noremap = true, silent = true }
 -- vim.keymap.set('n', '<leader>g', '<cmd>Neogit<cr>')
 vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', keymap_opts)
