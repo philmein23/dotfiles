@@ -72,6 +72,10 @@ require('packer').startup(function(use)
     }
   }
 
+  use {
+    'nvim-telescope/telescope-fzy-native.nvim',
+  }
+
 -- use({
 --   "folke/noice.nvim",
 --   requires = {
@@ -540,12 +544,19 @@ require('telescope').setup {
 
     commands = defaults(),
     help_tags = defaults(),
+  },
+  extension = {
+    fzy_native = {
+      override_generic_sorter = true,
+      override_file_sorter = true
+    },
   }
 }
 
 -- Enable telescope fzf native
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('live_grep_args')
+require('telescope').load_extension('fzy_native')
 
 -- Show keymaps
 vim.keymap.set('n', '<leader>?', ':Telescope keymaps<CR>')
