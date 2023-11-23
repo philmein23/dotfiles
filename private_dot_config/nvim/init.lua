@@ -82,10 +82,6 @@ require('packer').startup(function(use)
 --
 use "kylechui/nvim-surround"
 
-use {
-    "nvim-neorg/neorg",
-}
-
   -- Neogit
 -- use {
 --      'TimUntersberger/neogit',
@@ -862,15 +858,6 @@ aerial.setup({
   end
 })
 
--- NeOrg
-local neorg = require("neorg")
-neorg.setup({
-  load = {
-    ["core.defaults"] = {},
-    ["core.integrations.treesitter"] = {},
-  }
-})
-
 -- Nvim Surround
 local nvim_surround = require("nvim-surround")
 nvim_surround.setup({
@@ -914,8 +901,8 @@ vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction =
 vim.keymap.set('n', '<leader>hw', ':HopWord <cr>')
 
 
-local noice = require('noice')
-noice.setup({})
+-- local noice = require('noice')
+-- noice.setup({})
 
 
 local opts = { noremap = true, silent = true }
