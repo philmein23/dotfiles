@@ -190,7 +190,7 @@ connect_qa() {
 	
 	connect_qa=sure-qa-k8s-use1
 
-	aws eks update-kubeconfig --name ${connect_qa} --alias {connect_qa}
+	aws eks update-kubeconfig --name ${connect_qa} --alias ${connect_qa}
 
 	pod_name=$(kubectl get pod --context ${connect_qa} | grep sure-qa-api | head -n 1 | awk '{print $1}')
 
