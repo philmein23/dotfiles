@@ -29,6 +29,7 @@ require('packer').startup(function(use)
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim', 'nvim-telescope/telescope-fzy-native.nvim',
  } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}-- Fancier statusline
@@ -511,9 +512,9 @@ require('telescope').setup {
     },
   },
   pickers = {
-    buffers = dropdown(),
-    find_files = dropdown(),
-    oldfiles = dropdown('History'),
+    buffers = defaults("Buffers"),
+    find_files = defaults("Find Files"),
+    oldfiles = defaults('History'),
     keymaps = dropdown(),
     command_history = dropdown(),
     colorscheme = dropdown(),
@@ -526,12 +527,6 @@ require('telescope').setup {
     commands = defaults(),
     help_tags = defaults(),
   },
-  extension = {
-    fzy_native = {
-      override_generic_sorter = true,
-      override_file_sorter = true
-    },
-  }
 }
 
 require('telescope').load_extension('live_grep_args')
