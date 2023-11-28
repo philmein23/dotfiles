@@ -167,5 +167,33 @@ eval "$(direnv hook zsh)"
 #if you want to set up an alias
 alias poetry-clean='rm -rf $(poetry env list --full-path | awk "{print $1}") && yes yes | poetry cache clear --all pypi && poetry cache clear --all private'
 
+# opam configuration
+[[ ! -r /Users/philmein23/.opam/opam-init/init.zsh ]] || source /Users/philmein23/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+
 alias dcr="docker compose run"
 alias lg="lazygit"
+
+# generate token required for AWS CLI (expires every 12h)
+# checks if you are alrady logged in
+get_codeartifact_token() {
+	if ! aws sts get-caller-identity --profile "$1" >> /dev/null ; then
+		aws sso login --profile "$1"
+	fi
+	
+}
+
+connect_qa() {
+	# connect_qa <command> e.g. connect_qa django-admin shell
+	get_codeartifact_token platform-sure
+	export AWS_PROFILE=platform-sure
+	
+	connect_qa=sure-qa-k8s-use1
+
+	aws eks update-kubeconfig --name ${connect_qa} --alias {connect_qa}
+
+	pod_name=$(kubectl get pod --context ${connect_qa} | grep sure-qa-api | head -n 1 | awk '{print $1}')
+
+
+	kubectl exec --context ${connect_qa}  -it $pod_name -- $@         
+}
