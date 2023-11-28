@@ -197,3 +197,5 @@ connect_qa() {
 
 	kubectl exec --context ${connect_qa}  -it $pod_name -- $@         
 }
+
+eval "${atuin init zsh}"
