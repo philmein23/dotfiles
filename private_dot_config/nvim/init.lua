@@ -77,8 +77,13 @@ use "kylechui/nvim-surround"
 
 
 use {"sindrets/diffview.nvim"}
-use 'folke/tokyonight.nvim'
-use {'ThePrimeagen/harpoon'}
+-- use 'folke/tokyonight.nvim'
+use "rebelot/kanagawa.nvim"
+-- use {'ThePrimeagen/harpoon'}
+use {
+    "cbochs/grapple.nvim",
+    requires = { "nvim-tree/nvim-web-devicons" }
+}
 use {
   'phaazon/hop.nvim',
   branch = 'v2.0', -- optional but strongly recommended
@@ -150,16 +155,45 @@ vim.o.grepformat = "%f:%l:%c:%m"
 --
 
 -- Tokyo night theme configration
-require('tokyonight').setup({
-  style = "night",
-  styles = {
-    functions = "bold",
-    keywords = "bold"
-  },
-  sidebars = { "qf", "vista_kind", "terminal", "packer" },
+-- require('tokyonight').setup({
+--   style = "night",
+--   styles = {
+--     functions = "bold",
+--     keywords = "bold"
+--   },
+--   sidebars = { "qf", "vista_kind", "terminal", "packer" },
+-- })
+--
+-- vim.cmd[[colorscheme tokyonight]]
+--
+-- Default options:
+require('kanagawa').setup({
+    compile = false,             -- enable compiling the colorscheme
+    undercurl = true,            -- enable undercurls
+    commentStyle = { italic = true },
+    functionStyle = {},
+    keywordStyle = { italic = true},
+    statementStyle = { bold = true },
+    typeStyle = {},
+    transparent = false,         -- do not set background color
+    dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+    terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+    colors = {                   -- add/modify theme and palette colors
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+    },
+    overrides = function(colors) -- add/modify highlights
+        return {}
+    end,
+    theme = "dragon",              -- Load "wave" theme when 'background' option is not set
+    background = {               -- map the value of 'background' option to a theme
+        dark = "dragon",           -- try "dragon" !
+        light = "lotus"
+    },
 })
 
-vim.cmd[[colorscheme tokyonight]]
+-- setup must be called before loading
+vim.cmd("colorscheme kanagawa")
 
 
 --Set statusbar
@@ -220,18 +254,29 @@ vim.keymap.set('n', '<leader>cF', ':let @+ = expand("%:p") <CR>')
 vim.keymap.set('n', '<leader>cn', ':let @+ = expand("%:t") <CR>')
 vim.keymap.set('n', '<leader>cd', ':let @+ = expand("%:p:h") <CR>')
 
--- Toggle harpoon mark
-vim.keymap.set('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+-- -- Toggle harpoon mark
+-- vim.keymap.set('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+--
+-- -- Search marks
+-- vim.keymap.set('n', '<F3>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
+--
+-- -- Navigate marks
+-- vim.keymap.set('n', '<leader>1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
+-- vim.keymap.set('n', '<leader>2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
+-- vim.keymap.set('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
+-- vim.keymap.set('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
+-- vim.keymap.set('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
+--
+-- Lua
+vim.keymap.set("n", "<leader>m", require("grapple").toggle)
+vim.keymap.set("n", "<leader>k", require("grapple").toggle_tags)
 
--- Search marks
-vim.keymap.set('n', '<F3>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
-
--- Navigate marks
-vim.keymap.set('n', '<leader>1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
-vim.keymap.set('n', '<leader>2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
-vim.keymap.set('n', '<leader>3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
-vim.keymap.set('n', '<leader>4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
-vim.keymap.set('n', '<leader>5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
+-- User command
+vim.keymap.set("n", "<leader>1", "<cmd>Grapple select index=1<cr>")
+vim.keymap.set("n", "<leader>2", "<cmd>Grapple select index=2<cr>")
+vim.keymap.set("n", "<leader>3", "<cmd>Grapple select index=3<cr>")
+vim.keymap.set("n", "<leader>4", "<cmd>Grapple select index=4<cr>")
+vim.keymap.set("n", "<leader>5", "<cmd>Grapple select index=55<cr>")
 
 -- Diffview
 vim.keymap.set('n', '<leader>dvo', ':DiffviewOpen <CR>')
