@@ -32,7 +32,7 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
   use { 'kyazdani42/nvim-web-devicons' }
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}-- Fancier statusline
+  use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}-- Fancier statusline
   use 'Julpikar/night-owl.nvim'
   use "EdenEast/nightfox.nvim" -- Packer
   use 'lukas-reineke/indent-blankline.nvim'
@@ -53,9 +53,6 @@ require('packer').startup(function(use)
   use {
       'stevearc/aerial.nvim',
     }
-  use {
-    "SmiteshP/nvim-navic",
-  }
 
   -- Better clipboard support
   use 'christoomey/vim-system-copy'
@@ -197,19 +194,30 @@ vim.cmd("colorscheme kanagawa")
 
 
 --Set statusbar
-local navic = require("nvim-navic")
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'tokyonight',
+    theme = 'kanagawa',
     component_separators = '|',
     section_separators = '',
     globalstatus = true
   },
   sections = {
+    lualine_b = {
+      {
+        require("grapple").statusline,
+        cond = require("grapple").exists
+      }
+    },
     lualine_c = {
-        { navic.get_location, cond = navic.is_available }
-    }
+      {"branch"}
+    },
+    lualine_d = {
+      {"diff"}
+    },
+    lualine_e = {
+      {"filesize"}
+    },
   },
   winbar = {
     lualine_c = {"%=%m %f"}
@@ -658,7 +666,6 @@ require("nvim-lsp-installer").setup {
   automatic_installation = true
 }
 
-local navic = require("nvim-navic")
 local lspconfig = require 'lspconfig'
 local on_attach = function(client, bufnr)
 
@@ -678,7 +685,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
-  navic.attach(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
