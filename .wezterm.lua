@@ -16,6 +16,14 @@ config.color_scheme = "kanagawabones"
 -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
+	{
+		key = "r",
+		mods = "LEADER",
+		action = act.ActivateKeyTable({
+			name = "resize_pane",
+			one_shot = false,
+		}),
+	},
 	{ key = "o", mods = "LEADER", action = wezterm.action.ShowLauncher },
 	-- Create a new tab in the same domain as the current pane.
 	-- This is usually what you want.
@@ -42,12 +50,12 @@ config.keys = {
 		action = wezterm.action.ActivatePaneDirection("Left"),
 	},
 	{
-		key = "j",
+		key = "k",
 		mods = "LEADER",
 		action = wezterm.action.ActivatePaneDirection("Up"),
 	},
 	{
-		key = "k",
+		key = "j",
 		mods = "LEADER",
 		action = wezterm.action.ActivatePaneDirection("Down"),
 	},
@@ -94,6 +102,30 @@ config.keys = {
 				end
 			end),
 		}),
+	},
+}
+config.key_tables = {
+	-- Defines the keys that are active in our resize-pane mode.
+	-- Since we're likely to want to make multiple adjustments,
+	-- we made the activation one_shot=false. We therefore need
+	-- to define a key assignment for getting out of this mode.
+	-- 'resize_pane' here corresponds to the name="resize_pane" in
+	-- the key assignments above.
+	resize_pane = {
+		{ key = "LeftArrow", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+		{ key = "h", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+
+		{ key = "RightArrow", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+		{ key = "l", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+
+		{ key = "UpArrow", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+		{ key = "k", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+
+		{ key = "DownArrow", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+		{ key = "j", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+
+		-- Cancel the mode by pressing escape
+		{ key = "Escape", action = "PopKeyTable" },
 	},
 }
 for i = 1, 8 do
