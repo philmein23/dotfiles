@@ -107,9 +107,12 @@ alias che="chezmoi edit"
 alias chd="chezmoi diff"
 alias cha="chezmoi apply"
 
+
 export EDITOR="nvim"
 export PYTHONBREAKPOINT=ipdb.set_trace
 export IPDB_CONTEXT_SIZE=5
+export LAMBDA_API_KEY=""
+export ANTHROPIC_API_KEY=""
 
 dc_build() {
   docker compose build --build-arg PRIVATE_REPO_TOKEN="$(aws --profile registries-read codeartifact get-authorization-token  --domain sure --query authorizationToken --duration-seconds 1200 --output text)"
@@ -151,18 +154,18 @@ get_codeartifact_token() {
 
 alias codeartifact="get_codeartifact_token registries-read"
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 export PATH=/opt/homebrew/opt/openssl@3/bin:$PATH
 export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib"
 
-for f in $HOME/Documents/Developer/dotfiles/bash/*.sh; do source $f; done
+# for f in $HOME/Documents/Developer/dotfiles/bash/*.sh; do source $f; done
 
-for f in $HOME/Documents/Developer/dotfiles/direnv/*.sh; do source $f; done
+# for f in $HOME/Documents/Developer/dotfiles/direnv/*.sh; do source $f; done
 
 source <(kubectl completion zsh)
 
 
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 #if you want to set up an alias
 alias poetry-clean='rm -rf $(poetry env list --full-path | awk "{print $1}") && yes yes | poetry cache clear --all pypi && poetry cache clear --all private'
@@ -170,7 +173,7 @@ alias poetry-clean='rm -rf $(poetry env list --full-path | awk "{print $1}") && 
 # opam configuration
 [[ ! -r /Users/philmein23/.opam/opam-init/init.zsh ]] || source /Users/philmein23/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-
+alias dc="docker-compose"
 alias dcr="docker compose run"
 alias lg="lazygit"
 
@@ -245,4 +248,22 @@ connect_prod_restart() {
 
 	sli k8s rollout-restart ${connect_prod}
 }
+
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+# bun completions
+[ -s "/Users/phillipnguyen/.bun/_bun" ] && source "/Users/phillipnguyen/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+
+export GEMINI_API_KEY=""
 
